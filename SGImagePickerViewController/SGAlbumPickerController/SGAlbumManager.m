@@ -423,13 +423,10 @@ static PHCachingImageManager * cacheImageManager;
 
 
 -(UIImage*)fullScreenImage{
-    
-    if (_fullScreenImage) {
-        return _fullScreenImage;
-    }
+
 #if Version_Arrowed
         ALAsset* asset = (ALAsset*)_data;
-        return _fullScreenImage = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+        return [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
 #else
     PHAsset* asset = (PHAsset*)_data;
     
@@ -442,7 +439,7 @@ static PHCachingImageManager * cacheImageManager;
         resultImage = result;
     }];
     
-    return _fullScreenImage = resultImage;
+    return resultImage;
 #endif
 
 }
@@ -452,13 +449,10 @@ static PHCachingImageManager * cacheImageManager;
         return nil;
     }
 
-    if (_fullResolutionImage) {
-        return _fullResolutionImage;
-    }
     
 #if Version_Arrowed
     ALAsset* asset = (ALAsset*)_data;
-    return _fullResolutionImage = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
+    return [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
 #else
     PHAsset* asset = (PHAsset*)_data;
     
@@ -479,7 +473,7 @@ static PHCachingImageManager * cacheImageManager;
         resultImage = result;
     }];
 
-    return _fullResolutionImage = resultImage;
+    return resultImage;
 #endif
     
 }
